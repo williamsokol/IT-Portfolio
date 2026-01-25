@@ -35,7 +35,7 @@ function App() {
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 font-sans font-bold text-xl">
             <Shield className="w-6 h-6 text-primary" />
-            <span>William<span className="text-primary">Sokol</span></span>
+            <span>William <span className="text-primary">Sokol</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">About</a>

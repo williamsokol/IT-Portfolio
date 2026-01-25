@@ -16,8 +16,7 @@ export const Section = ({ id, title, subtitle, children, className = "", contain
       <div className={`container px-4 md:px-6 mx-auto ${containerClassName}`}>
         {title && (
           <div className="mb-12 space-y-2">
-            <h2 className="text-3xl md:text-4xl font-mono font-bold tracking-tighter">
-              <span className="text-primary mr-2">/</span>
+            <h2 className="text-3xl md:text-4xl font-sans font-bold tracking-tight">
               {title}
             </h2>
             {subtitle && (
@@ -52,9 +51,9 @@ export const BentoCard = ({ title, subtitle, description, icon: Icon, children, 
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-2">
           {Icon && <Icon className="w-5 h-5 text-primary" />}
-          <h3 className="text-xl font-bold font-mono tracking-tight">{title}</h3>
+          <h3 className="text-xl font-bold tracking-tight">{title}</h3>
         </div>
-        {subtitle && <p className="text-primary/80 text-sm font-mono mb-2">{subtitle}</p>}
+        {subtitle && <p className="text-primary/80 text-sm font-medium mb-2">{subtitle}</p>}
         {description && <p className="text-muted-foreground text-sm leading-relaxed mb-4">{description}</p>}
         {children}
       </div>

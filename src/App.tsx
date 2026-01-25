@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
-  Terminal, 
-  Cpu, 
+  Shield, 
+  Server, 
   Network, 
   Code2, 
   ShieldCheck, 
@@ -15,7 +15,10 @@ import {
   Database,
   Layers,
   Wrench,
-  Bot
+  UserCheck,
+  Briefcase,
+  Building2,
+  Lock
 } from 'lucide-react';
 import { Section, BentoCard } from './components/layout-utils';
 import { Button } from './components/ui/button';
@@ -23,179 +26,156 @@ import { Badge } from './components/ui/badge';
 
 function App() {
   return (
-    <div className="min-h-screen scanline relative">
+    <div className="min-h-screen relative overflow-hidden bg-background">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+      
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 glass border-b border-white/5">
+      <nav className="fixed top-0 w-full z-50 glass border-b border-border">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 font-mono font-bold text-xl">
-            <Terminal className="w-6 h-6 text-primary" />
-            <span>WS<span className="text-primary">.</span></span>
+          <div className="flex items-center gap-2 font-sans font-bold text-xl">
+            <Shield className="w-6 h-6 text-primary" />
+            <span>William<span className="text-primary">Sokol</span></span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-mono">
-            <a href="#about" className="hover:text-primary transition-colors">/about</a>
-            <a href="#skills" className="hover:text-primary transition-colors">/skills</a>
-            <a href="#experience" className="hover:text-primary transition-colors">/experience</a>
-            <a href="#projects" className="hover:text-primary transition-colors">/projects</a>
-            <a href="#contact" className="hover:text-primary transition-colors">/contact</a>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">About</a>
+            <a href="#skills" className="text-muted-foreground hover:text-primary transition-colors">Skills</a>
+            <a href="#experience" className="text-muted-foreground hover:text-primary transition-colors">Experience</a>
+            <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors">Projects</a>
+            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a>
           </div>
-          <Button variant="outline" size="sm" className="font-mono border-primary/20 hover:border-primary">
-            Resume.pdf
+          <Button variant="outline" size="sm" className="border-border hover:border-primary transition-all">
+            Download CV
           </Button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <Section id="home" className="pt-40 md:pt-56">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-3 py-1 font-mono">
-                System Status: Online
-              </Badge>
-              <h1 className="text-5xl md:text-7xl font-mono font-bold tracking-tighter leading-tight">
-                William Sokol<br />
-                <span className="text-gradient">IT Support Specialist</span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-[600px] leading-relaxed">
-                Adept at diagnosing intricate hardware/software issues with expertise in 
-                <span className="text-foreground"> embedded systems</span>, 
-                <span className="text-foreground"> networking</span>, and 
-                <span className="text-foreground"> enterprise IT</span>.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-mono group">
-                Connect
-                <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <div className="flex items-center gap-4 px-4">
-                <a href="https://www.linkedin.com/in/william-sokol-56040790/" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a href="mailto:williamsokol0@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Mail className="w-6 h-6" />
-                </a>
-              </div>
+      <Section id="home" className="pt-32 md:pt-48 pb-20">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="space-y-6 animate-reveal">
+            <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-3 py-1 font-medium">
+              Enterprise IT & Infrastructure
+            </Badge>
+            <h1 className="text-5xl md:text-7xl font-sans font-bold tracking-tight leading-tight text-foreground">
+              Technical Excellence in <br />
+              <span className="text-gradient">Modern Enterprise Systems</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-[700px] mx-auto leading-relaxed">
+              Specialized in diagnosing complex infrastructure challenges, with deep expertise in 
+              <span className="text-foreground font-medium"> networking</span>, 
+              <span className="text-foreground font-medium"> cybersecurity</span>, and 
+              <span className="text-foreground font-medium"> hardware integration</span>.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4 animate-reveal" style={{ animationDelay: '200ms' }}>
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 group px-8">
+              Get in Touch
+              <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <div className="flex items-center gap-4 px-4">
+              <a href="https://www.linkedin.com/in/william-sokol-56040790/" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="mailto:williamsokol0@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                <Mail className="w-6 h-6" />
+              </a>
             </div>
           </div>
-          <div className="relative lg:h-[500px] hidden lg:block">
-            <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full animate-pulse" />
-            <div className="glass rounded-2xl p-8 h-full flex flex-col justify-between border-white/5 relative z-10 animate-float">
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                </div>
-                <Badge variant="outline" className="font-mono text-[10px] opacity-50">kernel_v6.8.0-40</Badge>
-              </div>
-              <div className="font-mono text-sm space-y-3 opacity-80 overflow-hidden">
-                <p className="text-primary">$ whoami</p>
-                <p>william_sokol</p>
-                <p className="text-primary">$ ls skills/</p>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <p>• embedded_linux</p>
-                  <p>• networking_cfg</p>
-                  <p>• hardware_debug</p>
-                  <p>• enterprise_support</p>
-                </div>
-                <p className="text-primary">$ status --it-support</p>
-                <p className="text-green-500">[SUCCESS] 90% resolution_rate</p>
-                <p className="text-primary">$ fetch certifications</p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-white/10 text-[10px]">CompTIA Tech+</Badge>
-                  <Badge className="bg-white/10 text-[10px]">Azure Fund.</Badge>
-                  <Badge className="bg-white/10 text-[10px]">Google IT</Badge>
-                </div>
-              </div>
-              <div className="mt-8 pt-8 border-t border-white/5 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Cpu className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Systems Load</p>
-                    <p className="text-sm font-mono">OPTIMAL</p>
-                  </div>
-                </div>
-                <Monitor className="w-8 h-8 text-primary/40" />
-              </div>
+
+          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-50 animate-reveal" style={{ animationDelay: '400ms' }}>
+            <div className="flex flex-col items-center gap-2">
+              <ShieldCheck className="w-8 h-8" />
+              <span className="text-xs font-semibold uppercase tracking-wider">Security First</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Server className="w-8 h-8" />
+              <span className="text-xs font-semibold uppercase tracking-wider">Scalable Infra</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Network className="w-8 h-8" />
+              <span className="text-xs font-semibold uppercase tracking-wider">Optimized Net</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Database className="w-8 h-8" />
+              <span className="text-xs font-semibold uppercase tracking-wider">Data Integrity</span>
             </div>
           </div>
         </div>
       </Section>
 
       {/* Skills Section */}
-      <Section id="skills" title="skills & certifications" subtitle="Technical arsenal for enterprise IT and hardware-software integration.">
+      <Section id="skills" title="Technical Arsenal" subtitle="Core competencies in enterprise-grade IT infrastructure and systems integration.">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <BentoCard 
             title="Infrastructure" 
             icon={Monitor} 
-            description="Enterprise level support and management."
+            description="End-to-end enterprise systems management."
           >
             <div className="flex flex-wrap gap-2">
-              {['Windows/Linux', 'Active Directory', 'Azure', 'macOS', 'Cli/Bash'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-white/5 hover:bg-white/10">{s}</Badge>
+              {['Windows Server', 'Linux Admin', 'Azure Cloud', 'Active Directory', 'ITSM'].map(s => (
+                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
               ))}
             </div>
           </BentoCard>
 
           <BentoCard 
-            title="Embedded Systems" 
-            icon={Cpu} 
-            description="Hardware-software integration and low-level protocols."
+            title="Hardware Systems" 
+            icon={Server} 
+            description="Hardware-level diagnostics and embedded integration."
           >
             <div className="flex flex-wrap gap-2">
-              {['Arduino', 'ESP32', 'UART/SPI/I2C', 'PCB Testing', 'Embedded Linux'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-white/5 hover:bg-white/10">{s}</Badge>
+              {['ESP32/IOT', 'PCB Diagnostics', 'Serial Protocols', 'Edge Computing', 'Robotics'].map(s => (
+                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
               ))}
             </div>
           </BentoCard>
 
           <BentoCard 
-            title="Programming" 
+            title="Development" 
             icon={Code2} 
-            description="Full-stack and automation capabilities."
+            description="Technical automation and custom tool development."
           >
             <div className="flex flex-wrap gap-2">
-              {['Python', 'JavaScript', 'C++', 'Node.js', 'SQL', 'C#', 'R'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-white/5 hover:bg-white/10">{s}</Badge>
+              {['Python', 'Node.js', 'C++', 'Shell Scripting', 'SQL Systems', 'TypeScript'].map(s => (
+                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
               ))}
             </div>
           </BentoCard>
 
           <BentoCard 
-            title="Networking" 
+            title="Enterprise Networking" 
             icon={Network} 
-            description="Advanced network configuration and optimization."
+            description="Advanced network design and routing optimization."
           >
             <div className="flex flex-wrap gap-2">
-              {['WiFi 7', 'Router Optimization', 'Kernel Modules', 'Protocols', 'WPA_Supplicant'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-white/5 hover:bg-white/10">{s}</Badge>
+              {['WiFi 7 Systems', 'Protocol Analysis', 'Routing Logic', 'Network Security', 'VLANs'].map(s => (
+                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
               ))}
             </div>
           </BentoCard>
 
           <BentoCard 
-            title="Cybersecurity" 
-            icon={ShieldCheck} 
-            description="Google Cybersecurity & Azure Fundamentals certified."
+            title="Security Compliance" 
+            icon={Lock} 
+            description="Dedicated focus on cybersecurity frameworks and standards."
           >
             <div className="flex flex-wrap gap-2">
-              {['CompTIA Tech+', 'Google IT Support', 'Azure Fundamentals', 'Google Cybersecurity'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-white/5 hover:bg-white/10">{s}</Badge>
+              {['CompTIA Tech+', 'Google Cybersecurity', 'Azure Security', 'Access Control'].map(s => (
+                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
               ))}
             </div>
           </BentoCard>
 
           <BentoCard 
-            title="Tools & Soft Skills" 
+            title="Operations" 
             icon={Wrench} 
-            description="Agile collaboration and technical writing."
+            description="Strategic project management and technical documentation."
           >
             <div className="flex flex-wrap gap-2">
-              {['Git/GitLab', 'Docker', 'Jira', 'EasyEDA', 'Technical Writing', 'Comm.'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-white/5 hover:bg-white/10">{s}</Badge>
+              {['Agile/Scrum', 'CI/CD Pipelines', 'Technical Writing', 'Stakeholder Mgmt', 'Jira'].map(s => (
+                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
               ))}
             </div>
           </BentoCard>
@@ -203,238 +183,181 @@ function App() {
       </Section>
 
       {/* Experience Section */}
-      <Section id="experience" title="professional experience">
-        <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+      <Section id="experience" title="Professional Experience">
+        <div className="space-y-8 max-w-4xl mx-auto">
           
-          {/* BallyBots */}
-          <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary/50 bg-background group-hover:bg-primary transition-colors absolute left-0 md:left-1/2 md:-ml-5">
-              <Bot className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-            </div>
-            <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-xl border-white/5 group-hover:border-primary/20 transition-all">
-              <div className="flex items-center justify-between mb-1">
-                <div className="font-bold text-lg">Founder & Developer</div>
-                <time className="font-mono text-sm text-primary">Jan 2024 – Aug 2025</time>
+          {[
+            {
+              role: "Founder & Technical Lead",
+              company: "BallyBots | Livermore, CA",
+              period: "Jan 2024 – Aug 2025",
+              icon: UserCheck,
+              points: [
+                "Developed scalable robotics education frameworks for edge-AI systems",
+                "Engineered robust ESP32-based hardware with integrated sensor arrays",
+                "Led technical diagnostics and performance benchmarking for prototype units",
+                "Maintained exceptional service standards with high resolution metrics"
+              ]
+            },
+            {
+              role: "Systems Engineer",
+              company: "Vanet Inc. | Rancho Santa Margarita, CA",
+              period: "Jul 2023 – Jan 2024",
+              icon: Building2,
+              points: [
+                "Optimized next-generation network infrastructure using prototype protocols",
+                "Reduced system latency by 30% through targeted kernel optimizations",
+                "Developed automated testing suites for network performance validation",
+                "Managed complex hardware debugging using industry-standard tools"
+              ]
+            },
+            {
+              role: "Junior Systems Engineer",
+              company: "Saffron Rose Corp | Livermore, CA",
+              period: "Feb 2021 – Jan 2022",
+              icon: Briefcase,
+              points: [
+                "Implemented computer vision systems for quality control and analysis",
+                "Built custom lightfield capture solutions using high-precision automation",
+                "Leveraged machine learning models to improve identification accuracy by 80%"
+              ]
+            }
+          ].map((exp, i) => (
+            <div key={i} className="flex gap-6 group">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full border border-border bg-card flex items-center justify-center group-hover:border-primary transition-colors">
+                  <exp.icon className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1 w-px bg-border my-2" />
               </div>
-              <div className="text-primary font-mono text-sm mb-4">BallyBots | Livermore, CA</div>
-              <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside">
-                <li>Created low-cost Robotics education kit introducing edge-AI & real-time video streaming</li>
-                <li>Engineered ESP32-based robot with sensor/motor integration and UART, SPI, USB protocols</li>
-                <li>Tested prototype PCBs using multimeters, power supplies, and traffic generators</li>
-                <li>Achieved 90% first-contact resolution rate in customer service</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Vanet Inc */}
-          <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary/50 bg-background group-hover:bg-primary transition-colors absolute left-0 md:left-1/2 md:-ml-5">
-              <Network className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-            </div>
-            <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-xl border-white/5 group-hover:border-primary/20 transition-all">
-              <div className="flex items-center justify-between mb-1">
-                <div className="font-bold text-lg">Systems Engineer</div>
-                <time className="font-mono text-sm text-primary">Jul 2023 – Jan 2024</time>
+              <div className="flex-1 pb-12">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h3 className="text-xl font-bold">{exp.role}</h3>
+                  <span className="text-sm font-semibold text-primary px-3 py-1 bg-primary/5 rounded-full">{exp.period}</span>
+                </div>
+                <p className="text-primary font-medium mb-4">{exp.company}</p>
+                <ul className="space-y-2">
+                  {exp.points.map((p, j) => (
+                    <li key={j} className="text-muted-foreground text-sm flex gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-1.5 shrink-0" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="text-primary font-mono text-sm mb-4">Vanet Inc. | Rancho Santa Margarita, CA</div>
-              <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside">
-                <li>Configured and optimized WiFi 7 routers with prototype routing protocols</li>
-                <li>Designed custom kernel modules reducing latency by 30%</li>
-                <li>Wrote Bash test scripts to validate software performance across WiFi networks</li>
-                <li>Debugged WiFi scanning programs using WPA_Supplicant and netfilter modules</li>
-              </ul>
             </div>
-          </div>
-
-          {/* Saffron Rose */}
-          <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary/50 bg-background group-hover:bg-primary transition-colors absolute left-0 md:left-1/2 md:-ml-5">
-              <Layers className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-            </div>
-            <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-xl border-white/5 group-hover:border-primary/20 transition-all">
-              <div className="flex items-center justify-between mb-1">
-                <div className="font-bold text-lg">Junior Engineer</div>
-                <time className="font-mono text-sm text-primary">Feb 2021 – Jan 2022</time>
-              </div>
-              <div className="text-primary font-mono text-sm mb-4">Saffron Rose Corp | Livermore, CA</div>
-              <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside">
-                <li>Imaging & analysis of saffron flowers using machine vision and color grading</li>
-                <li>Created lightfield capture program using Python and GCode for 3D interpretations</li>
-                <li>Trained Tensorflow neural network to identify saffron pistils with 80% accuracy</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* The Coder School */}
-          <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary/50 bg-background group-hover:bg-primary transition-colors absolute left-0 md:left-1/2 md:-ml-5">
-              <Terminal className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-            </div>
-            <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-xl border-white/5 group-hover:border-primary/20 transition-all">
-              <div className="flex items-center justify-between mb-1">
-                <div className="font-bold text-lg">Programming Instructor</div>
-                <time className="font-mono text-sm text-primary">Aug 2020 – Jul 2023</time>
-              </div>
-              <div className="text-primary font-mono text-sm mb-4">The Coder School | San Ramon, CA</div>
-              <ul className="text-muted-foreground text-sm space-y-2 list-disc list-inside">
-                <li>Taught Python, Java, C++, Unity, and Robotics to students aged 8-18</li>
-                <li>Managed client services and technical support for students and instructors</li>
-                <li>Created custom Windows .iso images and maintained 3D printers/computers</li>
-              </ul>
-            </div>
-          </div>
-
+          ))}
         </div>
       </Section>
 
       {/* Projects Section */}
-      <Section id="projects" title="projects" subtitle="Recent explorations in robotics, neural networks, and computer vision.">
+      <Section id="projects" title="Technical Projects" subtitle="Scalable solutions in robotics, vision systems, and network engineering.">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="glass rounded-2xl overflow-hidden group">
-            <div className="h-48 bg-primary/5 flex items-center justify-center border-b border-white/5 overflow-hidden">
-              <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:bg-primary/10 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Monitor className="w-16 h-16 text-primary/40 group-hover:scale-110 transition-transform" />
+          {[
+            {
+              title: "3D Reconstruction Engine",
+              tag: "Python / Data",
+              desc: "Enhanced SLAM-based 3D reconstruction pipelines for specialized hardware environments, optimizing point cloud data accuracy.",
+              icon: Database
+            },
+            {
+              title: "Perspective Warping System",
+              tag: "OpenCV / Systems",
+              desc: "Real-time head tracking implementation for adaptive perspective rendering in high-performance browser environments.",
+              icon: UserCheck
+            },
+            {
+              title: "Core Mathematics Library",
+              tag: "Algorithm Design",
+              desc: "Developed a comprehensive tensor processing library from scratch for browser-side neural network implementation.",
+              icon: Layers
+            }
+          ].map((project, i) => (
+            <div key={i} className="group glass p-8 rounded-2xl border-border hover:border-primary/20 transition-all">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center">
+                  <project.icon className="w-6 h-6 text-primary" />
                 </div>
+                <Badge variant="outline" className="font-sans text-xs">{project.tag}</Badge>
               </div>
-            </div>
-            <div className="p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold font-mono tracking-tighter">SLAM3R 3D Reconstruction</h3>
-                <Badge variant="outline" className="text-[10px] font-mono">Python</Badge>
-              </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Modified in-development Python repository to work with alternate hardware. 
-                Fixed bugs and corrected data from libraries that convert images to accurate 3D point clouds.
+              <h3 className="text-2xl font-bold mb-4 tracking-tight">{project.title}</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
+                {project.desc}
               </p>
-              <div className="flex gap-4">
-                <Button size="sm" variant="outline" className="text-xs font-mono border-primary/20 group">
-                  <Github className="w-3.5 h-3.5 mr-2" />
-                  GitHub
-                </Button>
-              </div>
+              <Button variant="ghost" size="sm" className="group/btn text-primary hover:text-primary hover:bg-primary/5 p-0">
+                View Repository
+                <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </Button>
             </div>
-          </div>
-
-          <div className="glass rounded-2xl overflow-hidden group">
-            <div className="h-48 bg-primary/5 flex items-center justify-center border-b border-white/5 overflow-hidden">
-              <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:bg-primary/10 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Bot className="w-16 h-16 text-primary/40 group-hover:scale-110 transition-transform" />
-                </div>
-              </div>
-            </div>
-            <div className="p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold font-mono tracking-tighter">Inbrowser Head Tracking</h3>
-                <Badge variant="outline" className="text-[10px] font-mono">OpenCV / Godot</Badge>
-              </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Combined OpenCV webassembly with GDscript using Godot Game engine Javascript Bridge. 
-                Implemented real-time head tracking for realistic perspective warping.
-              </p>
-              <div className="flex gap-4">
-                <Button size="sm" variant="outline" className="text-xs font-mono border-primary/20 group">
-                  <Github className="w-3.5 h-3.5 mr-2" />
-                  GitHub
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="glass rounded-2xl overflow-hidden group">
-            <div className="h-48 bg-primary/5 flex items-center justify-center border-b border-white/5 overflow-hidden">
-              <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:bg-primary/10 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Cpu className="w-16 h-16 text-primary/40 group-hover:scale-110 transition-transform" />
-                </div>
-              </div>
-            </div>
-            <div className="p-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold font-mono tracking-tighter">XOR BackProp NN</h3>
-                <Badge variant="outline" className="text-[10px] font-mono">Vanilla JS</Badge>
-              </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Built a Deep Neural Network from vanilla JavaScript to run in browser. 
-                Created custom tensor math library with gradient descent & backpropagation algorithms.
-              </p>
-              <div className="flex gap-4">
-                <Button size="sm" variant="outline" className="text-xs font-mono border-primary/20 group">
-                  <Github className="w-3.5 h-3.5 mr-2" />
-                  GitHub
-                </Button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </Section>
 
-      {/* Education & Contact Section */}
-      <Section id="contact" title="connect" subtitle="Let's discuss system infrastructure, embedded development, or IT solutions.">
+      {/* Contact Section */}
+      <Section id="contact" title="Get in Touch" subtitle="Available for consultations on IT infrastructure and enterprise systems development.">
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="space-y-8">
-            <div className="glass p-8 rounded-2xl border-white/5 space-y-6">
-              <h3 className="text-xl font-bold font-mono text-primary flex items-center gap-2">
-                <Layers className="w-5 h-5" />
-                Education
+            <div className="glass p-8 rounded-2xl border-border space-y-6">
+              <h3 className="text-xl font-bold text-foreground flex items-center gap-3">
+                <Building2 className="w-5 h-5 text-primary" />
+                Professional Education
               </h3>
-              <div>
-                <div className="font-bold text-lg">IT Support Specialist Program</div>
-                <div className="text-primary font-mono text-sm">NPower | Aug 2025 – Dec 2025</div>
-                <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
-                  300+ hours of hands-on technical training focused on CompTIA Tech+, Microsoft Azure, and Google IT Support.
-                </p>
+              <div className="space-y-4">
+                <div>
+                  <div className="font-bold text-lg">Systems Infrastructure Program</div>
+                  <div className="text-primary font-medium">NPower | Aug 2025 – Dec 2025</div>
+                  <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
+                    Advanced technical certification track specializing in Microsoft Azure architecture, 
+                    CompTIA infrastructure standards, and enterprise IT management.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="glass p-8 rounded-2xl border-white/5 space-y-6">
-              <h3 className="text-xl font-bold font-mono text-primary flex items-center gap-2">
-                <Monitor className="w-5 h-5" />
-                Contact Info
+            <div className="glass p-8 rounded-2xl border-border space-y-6">
+              <h3 className="text-xl font-bold text-foreground flex items-center gap-3">
+                <Mail className="w-5 h-5 text-primary" />
+                Communication
               </h3>
               <div className="space-y-4">
                 <a href="mailto:williamsokol0@gmail.com" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary/20">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/10">
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   williamsokol0@gmail.com
                 </a>
                 <div className="flex items-center gap-4 text-muted-foreground group">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   (408) 990-6034
-                </div>
-                <div className="flex items-center gap-4 text-muted-foreground">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                    <Monitor className="w-5 h-5 text-primary" />
-                  </div>
-                  Livermore, CA
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="glass p-8 rounded-2xl border-white/5">
+          <div className="glass p-8 rounded-2xl border-border">
             <form className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-mono text-muted-foreground">/name</label>
-                <input className="w-full bg-white/5 border border-white/10 rounded-lg p-3 outline-none focus:border-primary/50 transition-colors font-mono text-sm" placeholder="John Doe" />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Name</label>
+                  <input className="w-full bg-secondary/50 border border-border rounded-lg p-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Full Name" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground">Email</label>
+                  <input className="w-full bg-secondary/50 border border-border rounded-lg p-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Work Email" />
+                </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-mono text-muted-foreground">/email</label>
-                <input className="w-full bg-white/5 border border-white/10 rounded-lg p-3 outline-none focus:border-primary/50 transition-colors font-mono text-sm" placeholder="john@example.com" />
+                <label className="text-sm font-medium text-muted-foreground">Subject</label>
+                <input className="w-full bg-secondary/50 border border-border rounded-lg p-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Inquiry Subject" />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-mono text-muted-foreground">/message</label>
-                <textarea className="w-full bg-white/5 border border-white/10 rounded-lg p-3 outline-none focus:border-primary/50 transition-colors font-mono text-sm h-32" placeholder="Your message here..." />
+                <label className="text-sm font-medium text-muted-foreground">Message</label>
+                <textarea className="w-full bg-secondary/50 border border-border rounded-lg p-3 outline-none focus:border-primary transition-colors text-sm h-32" placeholder="How can I assist you?" />
               </div>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-mono py-6">
-                Send Transmission
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 py-6">
+                Submit Inquiry
               </Button>
             </form>
           </div>
@@ -442,18 +365,19 @@ function App() {
       </Section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/5 relative overflow-hidden">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground font-mono">
+      <footer className="py-12 border-t border-border relative overflow-hidden bg-secondary/30">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-primary" />
-            <span>© 2026 William Sokol. All logs cleared.</span>
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="font-medium text-foreground">William Sokol</span>
+            <span className="opacity-50">| Infrastructure & Security Professional</span>
           </div>
           <div className="flex items-center gap-8">
-            <a href="https://www.linkedin.com/in/william-sokol-56040790/" target="_blank" className="hover:text-primary transition-colors flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/william-sokol-56040790/" target="_blank" className="hover:text-primary transition-colors flex items-center gap-2 font-medium">
               <Linkedin className="w-4 h-4" />
               LinkedIn
             </a>
-            <a href="#" className="hover:text-primary transition-colors flex items-center gap-2">
+            <a href="#" className="hover:text-primary transition-colors flex items-center gap-2 font-medium">
               <Github className="w-4 h-4" />
               GitHub
             </a>

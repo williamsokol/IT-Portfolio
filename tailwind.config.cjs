@@ -15,7 +15,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Geist", "sans-serif"],
+        sans: ["Geist", "Inter", "sans-serif"],
         mono: ["Geist Mono", "monospace"],
       },
       colors: {
@@ -67,20 +67,15 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
         reveal: {
-          from: { opacity: "0", transform: "translateY(20px)" },
+          from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        float: "float 6s ease-in-out infinite",
-        reveal: "reveal 0.8s cubic-bezier(0.2, 0, 0.2, 1) forwards",
+        reveal: "reveal 0.5s cubic-bezier(0.2, 0, 0.2, 1) forwards",
       },
     },
   },

@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Define __dirname manually
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  // REPLACE 'your-repo-name' with your actual repository name (e.g., 'portfolio')
-  // If your repo is at github.com/williamsokol/my-site, then base is '/my-site/'
-  base: '/IT-Portfolio/', 
+  base: '/your-repo-name/', // Don't forget to update this!
   plugins: [react()],
   resolve: {
     alias: {

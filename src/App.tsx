@@ -52,133 +52,78 @@ function App() {
 
       {/* Hero Section */}
       <Section id="home" className="pt-32 md:pt-48 pb-20">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="space-y-6 animate-reveal">
+        <div className="max-w-6xl mx-auto space-y-8">
+          
+          {/* Badge - outside and centered */}
+          <div className="flex justify-center animate-reveal">
             <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-3 py-1 font-medium">
               Enterprise IT & Infrastructure
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-sans font-bold tracking-tight leading-tight text-foreground">
-              Technical Excellence in <br />
-              <span className="text-gradient">Modern Enterprise Systems</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-[700px] mx-auto leading-relaxed">
+          </div>
+
+          {/* Image and Title side by side, centered as a unit */}
+          <div className="flex justify-center items-center gap-4 animate-reveal">
+            {/* Image */}
+            <div className="flex-shrink-0">
+              <img 
+                src="/images/profile.jpg" 
+                alt="William Sokol" 
+                className="w-64 h-64 md:w-80 md:h-80 rounded-2xl object-cover shadow-2xl border-4 border-primary/10"
+              />
+            </div>
+
+            {/* Title - centered */}
+            <div className="text-center max-w-2xl">
+              <h1 className="text-5xl md:text-7xl font-sans font-bold tracking-tight leading-tight text-foreground">
+                Technical Excellence in <br />
+                <span className="text-gradient">Modern Enterprise Systems</span>
+              </h1>
+            </div>
+          </div>
+
+          {/* Everything below - Centered */}
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <p className="text-xl text-muted-foreground max-w-[700px] mx-auto leading-relaxed animate-reveal">
               Specialized in diagnosing complex infrastructure challenges, with deep expertise in 
               <span className="text-foreground font-medium"> networking</span>, 
               <span className="text-foreground font-medium"> cybersecurity</span>, and 
               <span className="text-foreground font-medium"> hardware integration</span>.
             </p>
+            
+            <div className="flex flex-wrap justify-center gap-4 animate-reveal" style={{ animationDelay: '200ms' }}>
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 group px-8">
+                Get in Touch
+                <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <div className="flex items-center gap-4 px-4">
+                <a href="https://www.linkedin.com/in/william-sokol-56040790/" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                <a href="mailto:williamsokol0@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Mail className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+
+            <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-50 animate-reveal" style={{ animationDelay: '400ms' }}>
+              <div className="flex flex-col items-center gap-2">
+                <ShieldCheck className="w-8 h-8" />
+                <span className="text-xs font-semibold uppercase tracking-wider">Security First</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Server className="w-8 h-8" />
+                <span className="text-xs font-semibold uppercase tracking-wider">Scalable Infra</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Network className="w-8 h-8" />
+                <span className="text-xs font-semibold uppercase tracking-wider">Optimized Net</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <Database className="w-8 h-8" />
+                <span className="text-xs font-semibold uppercase tracking-wider">Data Integrity</span>
+              </div>
+            </div>
           </div>
-          
-          <div className="flex flex-wrap justify-center gap-4 animate-reveal" style={{ animationDelay: '200ms' }}>
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 group px-8">
-              Get in Touch
-              <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <div className="flex items-center gap-4 px-4">
-              <a href="https://www.linkedin.com/in/william-sokol-56040790/" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a href="mailto:williamsokol0@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                <Mail className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
-
-          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-50 animate-reveal" style={{ animationDelay: '400ms' }}>
-            <div className="flex flex-col items-center gap-2">
-              <ShieldCheck className="w-8 h-8" />
-              <span className="text-xs font-semibold uppercase tracking-wider">Security First</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Server className="w-8 h-8" />
-              <span className="text-xs font-semibold uppercase tracking-wider">Scalable Infra</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Network className="w-8 h-8" />
-              <span className="text-xs font-semibold uppercase tracking-wider">Optimized Net</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Database className="w-8 h-8" />
-              <span className="text-xs font-semibold uppercase tracking-wider">Data Integrity</span>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Skills Section */}
-      <Section id="skills" title="Technical Arsenal" subtitle="Core competencies in enterprise-grade IT infrastructure and systems integration.">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <BentoCard 
-            title="Infrastructure" 
-            icon={Monitor} 
-            description="End-to-end enterprise systems management."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['Windows Server', 'Linux Admin', 'Azure Cloud', 'Active Directory', 'ITSM'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
-
-          <BentoCard 
-            title="Hardware Systems" 
-            icon={Server} 
-            description="Hardware-level diagnostics and embedded integration."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['ESP32/IOT', 'PCB Diagnostics', 'Serial Protocols', 'Edge Computing', 'Robotics'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
-
-          <BentoCard 
-            title="Development" 
-            icon={Code2} 
-            description="Technical automation and custom tool development."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['Python', 'Node.js', 'C++', 'Shell Scripting', 'SQL Systems', 'TypeScript'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
-
-          <BentoCard 
-            title="Enterprise Networking" 
-            icon={Network} 
-            description="Advanced network design and routing optimization."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['WiFi 7 Systems', 'Protocol Analysis', 'Routing Logic', 'Network Security', 'VLANs'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
-
-          <BentoCard 
-            title="Security Compliance" 
-            icon={Lock} 
-            description="Dedicated focus on cybersecurity frameworks and standards."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['CompTIA Tech+', 'Google Cybersecurity', 'Azure Security', 'Access Control'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
-
-          <BentoCard 
-            title="Operations" 
-            icon={Wrench} 
-            description="Strategic project management and technical documentation."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['Agile/Scrum', 'CI/CD Pipelines', 'Technical Writing', 'Stakeholder Mgmt', 'Jira'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
         </div>
       </Section>
 

@@ -32,6 +32,8 @@ import { Youtube } from 'lucide-react';
 import { Cpu } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { Global } from 'recharts';
+import { skillsData } from './data/skills-data';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 function App() {
@@ -158,80 +160,147 @@ function App() {
       </Section>
 
       {/* Skills Section */}
+      {/* Skills Section */}
       <Section id="skills" title="Skills & Certifications" subtitle="Core competencies in enterprise-grade IT infrastructure and systems integration.">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <BentoCard
-            title="Infrastructure"
-            icon={Monitor}
-            description="End-to-end enterprise systems management."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['Windows Server', 'Linux Admin', 'Azure Cloud', 'Active Directory', 'ITSM'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
+        {(() => {
+          const [expandedCard, setExpandedCard] = React.useState<string | null>(null);
+          const [clickedPosition, setClickedPosition] = React.useState({ x: 0, y: 0 });
 
-          <BentoCard
-            title="Hardware Systems"
-            icon={Server}
-            description="Hardware-level diagnostics and embedded integration."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['ESP32/IOT', 'PCB Diagnostics', 'Serial Protocols', 'Edge Computing', 'Robotics'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
+          const handleCardClick = (key: string, event: React.MouseEvent) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            setClickedPosition({ x: rect.left, y: rect.top });
+            setExpandedCard(key);
+          };
 
-          <BentoCard
-            title="Development"
-            icon={Code2}
-            description="Technical automation and custom tool development."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['Python', 'Node.js', 'C++', 'Shell Scripting', 'SQL Systems', 'TypeScript'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
+          return (
+            <>
+              <AnimatePresence>
+                {expandedCard && (
+                  <>
+                    {/* Backdrop */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="fixed inset-0 bg-black/50 z-40"
+                      onClick={() => setExpandedCard(null)}
+                    />
 
-          <BentoCard
-            title="Enterprise Networking"
-            icon={Network}
-            description="Advanced network design and routing optimization."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['WiFi 7 Systems', 'Protocol Analysis', 'Routing Logic', 'Network Security', 'VLANs'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
+                    {/* Expanded content - centered */}
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-6 pointer-events-none">
+                      <motion.div
+                        layoutId={`card-${expandedCard}`}
+                        className="pointer-events-auto max-w-5xl w-full max-h-[90vh] overflow-y-auto relative"
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                      >
+                        <button
+                          onClick={() => setExpandedCard(null)}
+                          className="absolute top-0 right-0 text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 mb-4 z-10"
+                        >
+                          <span className="text-sm font-medium">Close</span>
+                          <ChevronRight className="w-5 h-5 rotate-90" />
+                        </button>
 
-          <BentoCard
-            title="Security Compliance"
-            icon={Lock}
-            description="Dedicated focus on cybersecurity frameworks and standards."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['CompTIA Tech+', 'Google Cybersecurity', 'Azure Security', 'Access Control'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
+                        <div className="glass p-8 rounded-2xl border-border">
+                          <motion.div
+                            className="flex items-center gap-4 mb-8"
+                            layoutId={`header-${expandedCard}`}
+                          >
+                            <motion.div
+                              className="w-16 h-16 rounded-xl bg-primary/5 flex items-center justify-center"
+                              layoutId={`icon-${expandedCard}`}
+                            >
+                              {React.createElement(skillsData[expandedCard].icon, { className: "w-8 h-8 text-primary" })}
+                            </motion.div>
+                            <div>
+                              <motion.h3
+                                className="text-3xl font-bold"
+                                layoutId={`title-${expandedCard}`}
+                              >
+                                {skillsData[expandedCard].title}
+                              </motion.h3>
+                              <motion.p
+                                className="text-muted-foreground"
+                                layoutId={`description-${expandedCard}`}
+                              >
+                                {skillsData[expandedCard].description}
+                              </motion.p>
+                            </div>
+                          </motion.div>
 
-          <BentoCard
-            title="Operations"
-            icon={Wrench}
-            description="Strategic project management and technical documentation."
-          >
-            <div className="flex flex-wrap gap-2">
-              {['Agile/Scrum', 'CI/CD Pipelines', 'Technical Writing', 'Stakeholder Mgmt', 'Jira'].map(s => (
-                <Badge key={s} variant="secondary" className="bg-secondary text-secondary-foreground">{s}</Badge>
-              ))}
-            </div>
-          </BentoCard>
-        </div>
+                          <motion.div
+                            className="grid md:grid-cols-2 gap-6"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2, duration: 0.3 }}
+                          >
+                            {skillsData[expandedCard].skills.map((skill, i) => (
+                              <motion.div
+                                key={i}
+                                layoutId={`skill-${expandedCard}-${skill.name}`}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 + i * 0.05, duration: 0.3 }}
+                                className="flex gap-4 p-4 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                              >
+                                <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
+                                <div>
+                                  <h4 className="font-bold text-lg mb-1">{skill.name}</h4>
+                                  <motion.p
+                                    className="text-sm text-muted-foreground leading-relaxed"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.2 + i * 0.05, duration: 0.3 }}
+                                  >
+                                    {skill.detail}
+                                  </motion.p>
+                                </div>
+                              </motion.div>
+                            ))}
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </>
+                )}
+              </AnimatePresence>
+
+              {/* Grid view */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Object.entries(skillsData).map(([key, data]) => (
+                  <motion.div
+                    key={key}
+                    layoutId={`card-${key}`}
+                    onClick={(e) => handleCardClick(key, e)}
+                    className="cursor-pointer"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                  >
+                    <BentoCard
+                      title={data.title}
+                      icon={data.icon}
+                      description={data.description}
+                    >
+                      <div className="flex flex-wrap gap-2">
+                        {data.skills.map(skill => (
+                          <motion.div
+                            key={skill.name}
+                            layoutId={`skill-${key}-${skill.name}`}
+                          >
+                            <Badge variant="secondary" className="bg-secondary text-secondary-foreground">
+                              {skill.name}
+                            </Badge>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </BentoCard>
+                  </motion.div>
+                ))}
+              </div>
+            </>
+          );
+        })()}
       </Section>
 
       {/* Experience Section */}
@@ -500,7 +569,6 @@ function App() {
         })()}
       </Section>
 
-      {/* Contact Section */}
       {/* Contact Section */}
       <Section id="contact" title="Get in Touch" subtitle="Available for consultations on IT infrastructure and enterprise systems development.">
         <div className="grid lg:grid-cols-2 gap-12">

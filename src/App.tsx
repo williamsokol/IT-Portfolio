@@ -55,7 +55,7 @@ function App() {
             <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a>
           </div>
           <Button asChild variant="outline" size="sm" className="border-border hover:border-primary transition-all">
-            <a href="/Documents/William_Sokol_Resume.pdf" download="William_Sokol_Resume.pdf">
+            <a href={`${import.meta.env.BASE_URL}Documents/William_Sokol_Resume.pdf`} download="William_Sokol_Resume.pdf">
               Download CV
             </a>
           </Button>
@@ -78,7 +78,7 @@ function App() {
             {/* Image */}
             <div className="flex-shrink-0">
               <img
-                src="/images/profile.jpg"
+                src={`${import.meta.env.BASE_URL}images/profile.jpg`}
                 alt="William Sokol"
                 className="w-64 h-64 md:w-80 md:h-80 rounded-2xl object-cover shadow-2xl border-4 border-primary/10"
               />
@@ -242,7 +242,7 @@ function App() {
               role: "Founder & Technical Lead",
               company: "BallyBots | Livermore, CA",
               period: "Jan 2024 – Aug 2025",
-              image: "/images/ballybots.jpeg", // Path to image
+              image: `${import.meta.env.BASE_URL}/images/ballybots.jpeg`, // Path to image
               icon: UserCheck, // Fallback component
               url: "https://ballybots.com",
               points: [
@@ -283,7 +283,7 @@ function App() {
               role: "Programming Instructor",
               company: "The Coder School | San Ramon, CA",
               period: "Aug 2020 – Jul 2023",
-              image: "/images/TheCoderSchool.jpeg",
+              image: `${import.meta.env.BASE_URL}/images/TheCoderSchool.jpeg`,
               icon: Briefcase,
               url: "https://thecoderschool.com",
               points: [

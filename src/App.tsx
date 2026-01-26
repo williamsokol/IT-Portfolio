@@ -18,7 +18,12 @@ import {
   UserCheck,
   Briefcase,
   Building2,
-  Lock
+  Lock,
+  Globe,
+  Globe2,
+  GlobeLock,
+  Globe2Icon,
+  Gamepad2
 } from 'lucide-react';
 import { Section, BentoCard } from './components/layout-utils';
 import { Button } from './components/ui/button';
@@ -26,6 +31,7 @@ import { Badge } from './components/ui/badge';
 import { Youtube } from 'lucide-react';
 import { Cpu } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { Global } from 'recharts';
 
 
 function App() {
@@ -38,7 +44,7 @@ function App() {
       <nav className="fixed top-0 w-full z-50 glass border-b border-border">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 font-sans font-bold text-xl">
-            <Shield className="w-6 h-6 text-primary" />
+            <Globe className="w-6 h-6 text-primary" />
             <span>William <span className="text-primary">Sokol</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -57,7 +63,7 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <Section id="home" className="pt-32 md:pt-48 pb-20">
+      <Section id="home" className="pt-32 md:pt-38 pb-20">
         <div className="max-w-6xl mx-auto space-y-8">
 
           {/* Badge - outside and centered */}
@@ -152,7 +158,7 @@ function App() {
       </Section>
 
       {/* Skills Section */}
-      <Section id="skills" title="Technical Arsenal" subtitle="Core competencies in enterprise-grade IT infrastructure and systems integration.">
+      <Section id="skills" title="Skills & Certifications" subtitle="Core competencies in enterprise-grade IT infrastructure and systems integration.">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <BentoCard
             title="Infrastructure"
@@ -228,7 +234,6 @@ function App() {
         </div>
       </Section>
 
-      {/* Experience Section */}
       {/* Experience Section */}
       <Section id="experience" title="Professional Experience">
         <div className="space-y-4 max-w-4xl mx-auto">
@@ -360,147 +365,132 @@ function App() {
       </Section>
 
       {/* Projects Section */}
-      {/* Projects Section */}
       <Section id="projects" title="Technical Projects" subtitle="Scalable solutions in robotics, vision systems, and network engineering.">
         {(() => {
           const [showAll, setShowAll] = React.useState(false);
 
           const allProjects = [
             {
-              title: "3D Reconstruction Engine",
+              title: "SLAM3R 3D Reconstruction",
               tag: "Python / Data",
-              desc: "Enhanced SLAM-based 3D reconstruction pipelines for specialized hardware environments, optimizing point cloud data accuracy.",
-              icon: Database,
+              desc: "Modified in-development Python repository to work with alternate hardware. Fixed bugs and corrected data from libraries that convert images to accurate 3D point clouds.",
+              icon: Monitor,
               href: "https://www.youtube.com/watch?v=29UQXbXoMCk"
             },
             {
-              title: "Perspective Warping System",
+              title: "Inbrowser Head Tracking",
               tag: "OpenCV / Systems",
-              desc: "Real-time head tracking implementation for adaptive perspective rendering in high-performance browser environments.",
-              icon: UserCheck,
+              desc: "Combined OpenCV webassembly with GDscript using Godot Game engine Javascript Bridge. Implemented real-time head tracking for realistic perspective warping.",
+              icon: Cpu,
               href: "https://github.com/williamsokol/HeadTrackingInGodotHTML5"
             },
             {
-              title: "Core Mathematics Library",
+              title: "XOR BackProp NN",
               tag: "Algorithm Design",
-              desc: "Developed a comprehensive tensor processing library from scratch for browser-side neural network implementation.",
-              icon: Layers,
+              desc: "Built a Deep Neural Network from vanilla JavaScript to run in browser. Created custom tensor math library with gradient descent & backpropagation algorithms.",
+              icon: Cpu,
               href: "https://github.com/williamsokol/NN"
             },
-            // Add more projects here as needed
             {
-              title: "BallyBots Robotics Kit",
-              tag: "ESP32 / IoT",
-              desc: "Low-cost robotics education platform with real-time video streaming and edge-AI capabilities for STEM learning.",
-              icon: Cpu,
-              href: "https://ballybots.com"
+              title: "WebRTC P2P Lobby",
+              tag: "Godot / WebAssembly",
+              desc: "Engineered a decentralized multiplayer lobby system utilizing Godot's JavaScript bridge and WebRTC. Facilitates seamless browser-based peer-to-peer networking without dedicated server overhead.",
+              icon: Network,
+              href: "https://github.com/williamsokol/godot-webrtc-lobby-demo"
             },
             {
-              title: "WiFi 7 Mesh Network",
-              tag: "Linux Kernel / Networking",
-              desc: "Custom kernel modules for WiFi 7 mesh networks achieving 30% latency reduction through protocol optimization.",
-              icon: Network,
-              href: "#"
-            }
+              title: "Pixel Sort Processor",
+              tag: "Javascript / Graphics",
+              desc: "Developed a high-performance image manipulation tool utilizing pixel-sorting algorithms. Implemented custom color-thresholding logic to programmatically reorder data and generate generative glitch-art textures.",
+              icon: Layers,
+              href: "https://github.com/williamsokol/ImageSortEffect"
+            },
+            {
+              title: "Many Games!",
+              tag: "Unity / C# / Godot",
+              desc: "A collection of 15+ published browser based titles and technical demos. Features explorations in procedural generation, custom physics solvers, and optimized state-machine architectures for real-time environments.",
+              icon: Gamepad2,
+              href: "https://bobojo.itch.io/"
+            },
           ];
+
+          // Helper function to render a project card to keep code DRY
+          const renderProjectCard = (project, i, isAnimated = false) => (
+            <div
+              key={i}
+              className="glass rounded-2xl overflow-hidden group border border-white/5 hover:border-primary/20 transition-all flex flex-col"
+              style={isAnimated ? { animation: `fadeIn 0.6s ease-out ${i * 0.1}s forwards` } : {}}
+            >
+              {/* Strong Blue Top Visual Area */}
+              <div className="h-40 bg-primary/5 flex items-center justify-center border-b border-white/5 overflow-hidden relative">
+                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:bg-primary/10 transition-colors" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-primary group-hover:scale-110 transition-transform duration-500">
+                    <project.icon size={48} strokeWidth={1.5} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content Area */}
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-3 gap-2">
+                  <h3 className="text-xl font-bold font-mono tracking-tight">{project.title}</h3>
+                  <Badge variant="outline" className="text-[10px] font-mono border-primary/30 text-primary">
+                    {project.tag}
+                  </Badge>
+                </div>
+                <p className="text-muted-foreground mb-6 leading-relaxed text-xs flex-1">
+                  {project.desc}
+                </p>
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="sm"
+                  className="group/btn text-primary hover:text-primary hover:bg-primary/5 p-0 w-fit"
+                >
+                  <a href={project.href} target={project.href?.startsWith('http') ? "_blank" : "_self"} rel="noopener noreferrer">
+                    View Project
+                    <ExternalLink className="ml-2 w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          );
 
           return (
             <>
               <style>{`
-                @keyframes fadeIn {
-                  from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                  }
-                  to {
-                    opacity: 1;
-                    transform: translateY(0);
-                  }
-                }
-              `}</style>
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
 
+              {/* First 4 Projects */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {allProjects.slice(0, 4).map((project, i) => (
-                  <div
-                    key={i}
-                    className="group glass p-8 rounded-2xl border-border hover:border-primary/20 transition-all"
-                  >
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center">
-                        <project.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <Badge variant="outline" className="font-sans text-xs">{project.tag}</Badge>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 tracking-tight">{project.title}</h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
-                      {project.desc}
-                    </p>
-                    <Button
-                      asChild
-                      variant="ghost"
-                      size="sm"
-                      className="group/btn text-primary hover:text-primary hover:bg-primary/5 p-0"
-                    >
-                      <a href={project.href} target="_blank" rel="noopener noreferrer">
-                        View Repository
-                        <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </a>
-                    </Button>
-                  </div>
-                ))}
+                {allProjects.slice(0, 4).map((project, i) => renderProjectCard(project, i))}
               </div>
 
-              {/* Expandable extra projects with animation */}
+              {/* Expandable Section */}
               <div
                 className="overflow-hidden transition-all duration-700 ease-in-out"
-                style={{
-                  maxHeight: showAll ? '2000px' : '0px'
-                }}
+                style={{ maxHeight: showAll ? '2000px' : '0px' }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                  {allProjects.slice(3).map((project, i) => (
-                    <div
-                      key={i + 3}
-                      className="group glass p-8 rounded-2xl border-border hover:border-primary/20 transition-all"
-                      style={{
-                        animation: showAll ? `fadeIn 0.6s ease-out ${i * 0.15}s forwards` : 'none'
-                      }}
-                    >
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center">
-                          <project.icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <Badge variant="outline" className="font-sans text-xs">{project.tag}</Badge>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 tracking-tight">{project.title}</h3>
-                      <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
-                        {project.desc}
-                      </p>
-                      <Button
-                        asChild
-                        variant="ghost"
-                        size="sm"
-                        className="group/btn text-primary hover:text-primary hover:bg-primary/5 p-0"
-                      >
-                        <a href={project.href} target="_blank" rel="noopener noreferrer">
-                          View Repository
-                          <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                        </a>
-                      </Button>
-                    </div>
-                  ))}
+                  {allProjects.slice(4).map((project, i) => renderProjectCard(project, i + 4, true))}
                 </div>
               </div>
 
-              {allProjects.length > 3 && (
-                <div className="flex justify-center mt-12 transition-all duration-500">
+              {/* Show More Button */}
+              {allProjects.length > 4 && (
+                <div className="flex justify-center mt-12">
                   <Button
                     onClick={() => setShowAll(!showAll)}
                     variant="outline"
                     size="lg"
                     className="border-border hover:border-primary transition-all group"
                   >
-                    {showAll ? 'Show Less' : `Show More Projects (${allProjects.length - 3} more)`}
+                    {showAll ? 'Show Less' : `Show More Projects (${allProjects.length - 4} more)`}
                     <ChevronRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-90' : ''}`} />
                   </Button>
                 </div>

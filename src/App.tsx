@@ -161,6 +161,7 @@ function App() {
       </Section>
 
       {/* Skills Section */}
+      {/* Skills Section */}
       <Section id="skills" title="Skills & Certifications" subtitle="Core competencies in enterprise-grade IT infrastructure and systems integration.">
         {(() => {
           const [expandedCard, setExpandedCard] = React.useState<string | null>(null);
@@ -245,8 +246,21 @@ function App() {
                                 className="flex gap-4 p-4 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors"
                               >
                                 <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
-                                <div>
-                                  <h4 className="font-bold text-lg mb-1">{skill.name}</h4>
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between gap-2">
+                                    <h4 className="font-bold text-lg mb-1">{skill.name}</h4>
+                                    {skill.url && (
+                                      <a
+                                        href={skill.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-primary hover:text-primary/80 transition-colors"
+                                        onClick={(e) => e.stopPropagation()}
+                                      >
+                                        <ExternalLink className="w-4 h-4" />
+                                      </a>
+                                    )}
+                                  </div>
                                   <motion.p
                                     className="text-sm text-muted-foreground leading-relaxed"
                                     initial={{ opacity: 0 }}
@@ -724,7 +738,7 @@ function App() {
       <footer className="py-12 border-t border-border relative overflow-hidden bg-secondary/30">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Globe className="w-4 h-4 text-primary" />
             <span className="font-medium text-foreground">William Sokol</span>
             <span className="opacity-50">| Infrastructure & Security Professional</span>
           </div>

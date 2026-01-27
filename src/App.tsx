@@ -23,7 +23,8 @@ import {
   Globe2,
   GlobeLock,
   Globe2Icon,
-  Gamepad2
+  Gamepad2,
+  Heart
 } from 'lucide-react';
 import { Section, BentoCard } from './components/layout-utils';
 import { Button } from './components/ui/button';
@@ -159,7 +160,6 @@ function App() {
         </div>
       </Section>
 
-      {/* Skills Section */}
       {/* Skills Section */}
       <Section id="skills" title="Skills & Certifications" subtitle="Core competencies in enterprise-grade IT infrastructure and systems integration.">
         {(() => {
@@ -567,6 +567,52 @@ function App() {
             </>
           );
         })()}
+      </Section>
+
+      {/* About Me Section */}
+      <Section id="about" title="About Me" subtitle="A bridge between hardware, IT engineering, and education.">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+          {/* Professional Side */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <ShieldCheck className="text-primary w-5 h-5" />
+              Technical Foundation
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              With a background spanning from <strong>Linux kernel optimization</strong> to
+              <strong> enterprise networking</strong>, I view IT as more than just support.
+              It's the art of creating optimal paths for people to interact with technology.
+              I specialize in building systems that are scalable, secure, and most importantly,
+              <strong> usable</strong>.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              My approach is rooted in <strong>proactive architecture</strong>: identifying
+              bottlenecks before they become failures and documenting processes to ensure
+              clear & operational continuity.
+            </p>
+          </div>
+
+          {/* Personal/Personality Side */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <Heart className="text-primary w-5 h-5" />
+              The Human Element
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Technology is most powerful when it's accessible. This belief led me to create
+              <strong> BallyBots </strong>, an initiative focused on lowering the barrier to entry
+              for robotics and IoT education.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              When I'm not in a rack or a terminal, you'll find me experimenting with
+              <strong> Generation & Networking </strong> in Godot or exploring the intersection of
+              AI and edge computing. I’m a lifelong tinkerer driven by the question:
+              <em> "What is the coolest thing I can do with this technology?"</em>
+            </p>
+          </div>
+
+        </div>
       </Section>
 
       {/* Contact Section */}

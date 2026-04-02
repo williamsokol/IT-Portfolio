@@ -76,6 +76,11 @@ export const skillsData: Record<string, SkillCategory> = {
         description: "Dedicated focus on cybersecurity frameworks and standards.",
         skills: [
             {
+                name: 'CompTIA Security+',
+                detail: 'Certified in network security, threat management, risk mitigation, and implementing cryptographic solutions.',
+                url: 'https://www.credly.com/badges/67a4bb92-20d7-476c-9837-e94409a02310/public_url' // Replace with your actual badge URL
+            },
+            {
                 name: 'CompTIA Tech+',
                 detail: 'Certified in fundamental IT support, hardware troubleshooting, and technical problem-solving.',
                 url: 'https://www.credly.com/badges/ea8e2b0f-f5ef-463d-9263-81974372b11f/public_url' // Replace with your actual badge URL
